@@ -45,6 +45,12 @@ dependency_overrides:
     path: ../../flutter_inappwebview_web
   flutter_inappwebview_windows:
     path: ../../flutter_inappwebview_windows
+  web: ^1.1.1
+  # web: ^1.0.0
+  intl: any
+  uuid: any
+  win32: 5.10.0
+  win32_registry: 1.1.3
 
 dev_dependencies:
   flutter_test:

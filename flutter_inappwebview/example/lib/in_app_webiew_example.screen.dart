@@ -114,84 +114,85 @@ class _InAppWebViewExampleScreenState extends State<InAppWebViewExampleScreen> {
             child: Stack(
               children: [
                 InAppWebView(
-                  key: webViewKey,
-                  webViewEnvironment: webViewEnvironment,
+                  // key: webViewKey,
+                  // webViewEnvironment: webViewEnvironment,
                   initialUrlRequest:
-                      URLRequest(url: WebUri('https://flutter.dev')),
+                      URLRequest(url: WebUri('https://asistencia.it-strategy.mx/inicio')),
+                      // URLRequest(url: WebUri('https://flutter.dev')),
                   // initialUrlRequest:
                   // URLRequest(url: WebUri(Uri.base.toString().replaceFirst("/#/", "/") + 'page.html')),
                   // initialFile: "assets/index.html",
-                  initialUserScripts: UnmodifiableListView<UserScript>([]),
-                  initialSettings: settings,
-                  contextMenu: contextMenu,
-                  pullToRefreshController: pullToRefreshController,
-                  onWebViewCreated: (controller) async {
-                    webViewController = controller;
-                  },
-                  onLoadStart: (controller, url) {
-                    setState(() {
-                      this.url = url.toString();
-                      urlController.text = this.url;
-                    });
-                  },
-                  onPermissionRequest: (controller, request) {
-                    return PermissionResponse(
-                        resources: request.resources,
-                        action: PermissionResponseAction.GRANT);
-                  },
-                  shouldOverrideUrlLoading:
-                      (controller, navigationAction) async {
-                    var uri = navigationAction.request.url!;
+                  // initialUserScripts: UnmodifiableListView<UserScript>([]),
+                  // initialSettings: settings,
+                  // contextMenu: contextMenu,
+                  // pullToRefreshController: pullToRefreshController,
+                  // onWebViewCreated: (controller) async {
+                  //   webViewController = controller;
+                  // },
+                  // onLoadStart: (controller, url) {
+                  //   setState(() {
+                  //     this.url = url.toString();
+                  //     urlController.text = this.url;
+                  //   });
+                  // },
+                  // onPermissionRequest: (controller, request) {
+                  //   return PermissionResponse(
+                  //       resources: request.resources,
+                  //       action: PermissionResponseAction.GRANT);
+                  // },
+                  // shouldOverrideUrlLoading:
+                  //     (controller, navigationAction) async {
+                  //   var uri = navigationAction.request.url!;
 
-                    if (![
-                      "http",
-                      "https",
-                      "file",
-                      "chrome",
-                      "data",
-                      "javascript",
-                      "about"
-                    ].contains(uri.scheme)) {
-                      if (await canLaunchUrl(uri)) {
-                        // Launch the App
-                        await launchUrl(
-                          uri,
-                        );
-                        // and cancel the request
-                        return NavigationActionPolicy.CANCEL;
-                      }
-                    }
+                  //   if (![
+                  //     "http",
+                  //     "https",
+                  //     "file",
+                  //     "chrome",
+                  //     "data",
+                  //     "javascript",
+                  //     "about"
+                  //   ].contains(uri.scheme)) {
+                  //     if (await canLaunchUrl(uri)) {
+                  //       // Launch the App
+                  //       await launchUrl(
+                  //         uri,
+                  //       );
+                  //       // and cancel the request
+                  //       return NavigationActionPolicy.CANCEL;
+                  //     }
+                  //   }
 
-                    return NavigationActionPolicy.ALLOW;
-                  },
-                  onLoadStop: (controller, url) {
-                    pullToRefreshController?.endRefreshing();
-                    setState(() {
-                      this.url = url.toString();
-                      urlController.text = this.url;
-                    });
-                  },
-                  onReceivedError: (controller, request, error) {
-                    pullToRefreshController?.endRefreshing();
-                  },
-                  onProgressChanged: (controller, progress) {
-                    if (progress == 100) {
-                      pullToRefreshController?.endRefreshing();
-                    }
-                    setState(() {
-                      this.progress = progress / 100;
-                      urlController.text = this.url;
-                    });
-                  },
-                  onUpdateVisitedHistory: (controller, url, isReload) {
-                    setState(() {
-                      this.url = url.toString();
-                      urlController.text = this.url;
-                    });
-                  },
-                  onConsoleMessage: (controller, consoleMessage) {
-                    print(consoleMessage);
-                  },
+                  //   return NavigationActionPolicy.ALLOW;
+                  // },
+                  // onLoadStop: (controller, url) {
+                  //   pullToRefreshController?.endRefreshing();
+                  //   setState(() {
+                  //     this.url = url.toString();
+                  //     urlController.text = this.url;
+                  //   });
+                  // },
+                  // onReceivedError: (controller, request, error) {
+                  //   pullToRefreshController?.endRefreshing();
+                  // },
+                  // onProgressChanged: (controller, progress) {
+                  //   if (progress == 100) {
+                  //     pullToRefreshController?.endRefreshing();
+                  //   }
+                  //   setState(() {
+                  //     this.progress = progress / 100;
+                  //     urlController.text = this.url;
+                  //   });
+                  // },
+                  // onUpdateVisitedHistory: (controller, url, isReload) {
+                  //   setState(() {
+                  //     this.url = url.toString();
+                  //     urlController.text = this.url;
+                  //   });
+                  // },
+                  // onConsoleMessage: (controller, consoleMessage) {
+                  //   print(consoleMessage);
+                  // },
                 ),
                 progress < 1.0
                     ? LinearProgressIndicator(value: progress)
