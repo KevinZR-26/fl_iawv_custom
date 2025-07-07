@@ -407,6 +407,12 @@ public class InAppWebViewChromeClient extends WebChromeClient implements PluginR
   @Override
   public boolean onJsPrompt(final WebView view, String url, final String message,
                             final String defaultValue, final JsPromptResult result) {
+    System.out.println("onJsPrompt: " + message);                       
+    if ("showFlutterTimePicker".equals(message)) {
+      // Respondemos con un valor para evitar que Android abra el TimePicker nativo
+      result.confirm("handled");
+      return true;
+    }
     if (inAppWebView != null && inAppWebView.channelDelegate != null) {
       inAppWebView.channelDelegate.onJsPrompt(url, message, defaultValue, null, new WebViewChannelDelegate.JsPromptCallback() {
         @Override
